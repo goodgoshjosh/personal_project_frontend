@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-// to add when these are ready - import Routing from './Routing';
+//import Routing from './Routing';
 
 
 class App extends Component {
@@ -13,3 +13,5 @@ class App extends Component {
 }
 
 export default App;
+
+//export default () => (<Routing/>)

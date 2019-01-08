@@ -1,6 +1,11 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
+import Home from "./components/Home";
+import Nintendoswitch from "./components/Nintendoswitch";
+import Ps4 from "./components/Ps4"
+import Xboxone from "./components/Xboxone";
+
 const Routing = () => (
     <Router>
       <Switch>
