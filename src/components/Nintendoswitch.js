@@ -1,14 +1,15 @@
 import React, { Component } from "react";
-import ".Nintendoswitch.css";
+// import '/Nintendoswitch.css';
 
 class Nintendoswitch extends Component {
-    render()
-//    { return (
-//        /* <img 
-//         src="https://www.logolynx.com/images/logolynx/74/74b158460c56301f7ae19c9b18109ccd.png"
-//         alt="Nintendo Switch Logo"
-//         /> 
-//     )}; 
+    render() {
+        return (
+        <div className="Nintendoswitch">
+            <h1>You are at Nintendo Switch!</h1>
+        </div>
+        )
+    }
 }
+
 
 export default Nintendoswitch;
