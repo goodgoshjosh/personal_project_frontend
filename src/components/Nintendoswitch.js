@@ -6,6 +6,7 @@ class Nintendoswitch extends Component {
         return (
         <div className="Nintendoswitch">
             <h1>You are at Nintendo Switch!</h1>
+            <img className="nintendoswitchlogo" src="https://seeklogo.com/images/N/nintendo-switch-logo-38D4F5C7E7-seeklogo.com.png"></img>
         </div>
         )
     }
