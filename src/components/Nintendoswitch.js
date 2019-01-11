@@ -7,24 +7,24 @@ import { apiURL } from '../App'
 class Nintendoswitch extends Component {
     constructor() {
       super();
-      this.state = { nsData: [] }
+      this.state = { nsData: [] } //declaring the state for Nintendo Switch Data which comes as an array via SQL
       }
 
       componentDidMount() {
-        
+        //below is the fetch that pulls from the apiURL via NOW
         fetch(`${apiURL}/nintendo_switches`, {
           headers: {
             "Content-Type":"application/json"
           }
         })
-        .then(response => response.json() )
+        .then(response => response.json() ) //When the app fetches the data, it then sets that data below via setState
         .then(data => this.setState({nsData: data}))
       }
     
 
     render() {
 
-      let nsData = this.state.nsData
+      let nsData = this.state.nsData //declaring nsData to prep for being returned below
 
         return (
        
@@ -47,7 +47,9 @@ class Nintendoswitch extends Component {
       </thead>
      
       <tbody>
-      {nsData.map(item =>
+        {/* //this code below then maps the data based off the unique ID which is a primary key from the database,
+        and it is then mapped via item.name, .genre, etc to correspond with the table header above  */}
+      {nsData.map(item => 
       <Fragment key={item.id}>
 
          <tr class="table-success">

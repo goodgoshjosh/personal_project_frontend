@@ -29,7 +29,7 @@ class Ps4 extends Component {
             <h1>PS4 Game Collection</h1>
             <img class="ps4logo" src="https://vignette.wikia.nocookie.net/destinypedia/images/1/13/Ps4.png/revision/latest?cb=20141023020943" alt='PS4 Logo'></img>
         
-            <table class="table table-hover">
+  <table class="table table-hover">
   <thead>
     <tr>
       <th scope="col">Title</th>
