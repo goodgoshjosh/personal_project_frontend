@@ -32,8 +32,6 @@ class Nintendoswitch extends Component {
           <h1>Nintendo Switch Game Collection</h1>
           <img class="switchlogo" src="https://seeklogo.com/images/N/nintendo-switch-logo-38D4F5C7E7-seeklogo.com.png" alt='Nintendo Switch Logo'></img>
 
-      {/* {nsData.map(item =>
-      <h4 key={item.id}>{item.name}</h4>)} */}
 
       <table class="table table-hover">
         <thead>
@@ -65,9 +63,7 @@ class Nintendoswitch extends Component {
       )}
       </tbody>
     </table> 
-          
-        </div>
-       
+    </div>
        )
     }
   }
