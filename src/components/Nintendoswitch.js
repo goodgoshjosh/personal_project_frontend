@@ -50,7 +50,7 @@ class Nintendoswitch extends Component {
      
       <tbody>
       {nsData.map(item =>
-      <div key={item.id}>
+      <Fragment key={item.id}>
 
          <tr class="table-success">
           <td>{item.name}</td>
@@ -61,7 +61,7 @@ class Nintendoswitch extends Component {
           <td>{item.physical_copy}</td>
           <td>{item.id}</td>
         </tr>
-        </div>
+        </Fragment> //Fragments don't take up as much dedicated space as a div. This is a parent element that doesn't take up space
       )}
       </tbody>
     </table> 
