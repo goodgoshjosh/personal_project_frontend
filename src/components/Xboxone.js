@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import './Xboxone.css'
+import { apiURL } from '../App'
 
 class Xboxone extends Component {
     render() {
@@ -11,7 +12,7 @@ class Xboxone extends Component {
             <table class="table table-hover">
                 <thead>
     <tr>
-      <th scope="col">Game</th>
+      <th scope="col">Title</th>
       <th scope="col">Genre</th>
       <th scope="col">Description</th>
       <th scope="col">Rating</th>
@@ -22,7 +23,7 @@ class Xboxone extends Component {
   </thead>
   <tbody>
     <tr class="table-success">
-      <th scope="row">Success</th>
+      <td>Column Content</td>
       <td>Column content</td>
       <td>Column content</td>
       <td>Column content</td>
