@@ -1,7 +1,24 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import "./Home.css"
 
 class Home extends Component {
+        constructor(props) { //constructing state for the game form
+            super(props);
+            this.state = {value: ''};
+        
+            this.handleChange = this.handleChange.bind(this);
+            this.handleSubmit = this.handleSubmit.bind(this);
+          }
+        
+          handleChange(event) {
+            this.setState({value: event.target.value});
+          }
+        
+          handleSubmit(event) {
+            alert('A game was submitted: ' + this.state.value);
+            event.preventDefault();
+          }
+    
     render() {
         return (
         <div className="Home">
@@ -14,7 +31,54 @@ class Home extends Component {
         <p>Below will be where you update data via a form and submit through the selector</p>
 
         <p>FORM GOES HERE</p>
+        
+        {/* code for form begins here */}
+        <form onSubmit={this.handleSubmit}> 
+        <label>
+          Game Name:
+          <input type="text" value={this.state.value} onChange={this.handleChange} />
+        </label>
+        <input type="submit" value="Submit" />
+      </form>
 
+      <form onSubmit={this.handleSubmit}> 
+        <label>
+          Genre: 
+          <input type="text"/>
+        </label>
+      </form>
+
+      <form onSubmit={this.handleSubmit}> 
+        <label>
+          Description:
+          <input type="text"/>
+        </label>
+      </form>
+
+      <form onSubmit={this.handleSubmit}> 
+        <label>
+          Rating:
+          <input type="text"/>
+        </label>
+      </form>
+
+      
+      <form onSubmit={this.handleSubmit}> 
+        <label>
+          Digital Copy:
+          <input type="text"/>
+        </label>
+      </form>
+
+
+      <form onSubmit={this.handleSubmit}> 
+        <label>
+          Physical Copy:
+          <input type="text"/>
+        </label>
+      </form>
+      
+            {/* Console Selector Drop Down */}
             <div class="form-group">
                 <select class="custom-select">
                     <option selected="">Console Selector</option>
@@ -22,9 +86,10 @@ class Home extends Component {
                     <option value="2">PS4</option>
                     <option value="3">Xbox One</option>
                 </select>
+
+                <input type="submit" value="Submit" />
              </div>
-        
-        </div>        
+             </div>
         )
     }
 }
