@@ -31,27 +31,29 @@ class Home extends Component {
         <p>Below will be where you update data via a form and submit through the selector</p>
 
         <p>FORM GOES HERE</p>
+       
         
         {/* code for form begins here */}
+        <div classname="Form">
         <form onSubmit={this.handleSubmit}> 
         <label>
           Game Name:
           <input type="text" value={this.state.value} onChange={this.handleChange} />
         </label>
         <input type="submit" value="Submit" />
-      </form>
+         </form>
 
-      <form onSubmit={this.handleSubmit}> 
+        <form onSubmit={this.handleSubmit}> 
         <label>
           Genre: 
           <input type="text"/>
         </label>
       </form>
-
+    {/*
       <form onSubmit={this.handleSubmit}> 
         <label>
           Description:
-          <input type="text"/>
+          <textarea value={this.state.value} onChange={this.handleChange} />
         </label>
       </form>
 
@@ -61,7 +63,6 @@ class Home extends Component {
           <input type="text"/>
         </label>
       </form>
-
       
       <form onSubmit={this.handleSubmit}> 
         <label>
@@ -70,14 +71,13 @@ class Home extends Component {
         </label>
       </form>
 
-
       <form onSubmit={this.handleSubmit}> 
         <label>
           Physical Copy:
           <input type="text"/>
         </label>
-      </form>
-      
+      </form> */}
+      </div>
             {/* Console Selector Drop Down */}
             <div class="form-group">
                 <select class="custom-select">
@@ -88,8 +88,8 @@ class Home extends Component {
                 </select>
 
                 <input type="submit" value="Submit" />
-             </div>
-             </div>
+            </div>
+            </div> 
         )
     }
 }
