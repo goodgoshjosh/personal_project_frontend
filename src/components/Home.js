@@ -1,24 +1,25 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import "./Home.css"
 
 class Home extends Component {
         constructor(props) { //constructing state for the game form
             super(props);
-            this.state = {value: ''};
-        
-            this.handleChange = this.handleChange.bind(this);
-            this.handleSubmit = this.handleSubmit.bind(this);
-          }
-        
-          handleChange(event) {
-            this.setState({value: event.target.value});
-          }
-        
-          handleSubmit(event) {
-            alert('A game was submitted: ' + this.state.value);
-            event.preventDefault();
-          }
-    
+            this.state = {
+                name: '',
+                genre: '',
+                description: '',
+                rating: '',
+                digital: '',
+                physical: ''
+            };
+        }
+        handleFormChange(event) {
+            this.setState({})
+        }
+        handleSendForm(e) {
+            e.preventDefault(e)
+        }
+
     render() {
         return (
         <div className="Home">
@@ -29,57 +30,39 @@ class Home extends Component {
         
 
         <p>Below will be where you update data via a form and submit through the selector</p>
-
-        <p>FORM GOES HERE</p>
        
-        
-        {/* code for form begins here */}
-        <div classname="Form">
-        <form onSubmit={this.handleSubmit}> 
+                                        {/* form below */}
+        <Fragment classname="Form">
+        <form onSubmit={e => this.handleSendForm(e)}>
         <label>
           Game Name:
-          <input type="text" value={this.state.value} onChange={this.handleChange} />
-        </label>
-        <input type="submit" value="Submit" />
+          <input type="text" onChange={e => this.setState({name: e.target.value})} id='name' placeholder="Game Name"/>        
+          </label><br />
+          <label>
+          Genre:
+          <input type="text" onChange={e => this.setState({genre: e.target.value})} id='genre' placeholder="RPG, Action, etc"/>        
+          </label><br />
+          <label>
+          Description:
+          <input type="text" onChange={e => this.setState({description: e.target.value})} id='description' placeholder="Brief description"/>        
+          </label><br />
+          <label>
+          Rating:
+          <input type="text" onChange={e => this.setState({rating: e.target.value})} id='rating' placeholder="Everyone, Teen, etc"/>        
+          </label><br />
+          <label>
+          Digital Copy:
+          <input type="text" onChange={e => this.setState({digital: e.target.value})} id='digital' placeholder="Yes or No"/>        
+          </label><br />
+          <label>
+          Physical Copy:
+          <input type="text" onChange={e => this.setState({physical: e.target.value})} id='physical' placeholder="Yes or No"/>        
+          </label><br />
          </form>
 
-        <form onSubmit={this.handleSubmit}> 
-        <label>
-          Genre: 
-          <input type="text"/>
-        </label>
-      </form>
-    {/*
-      <form onSubmit={this.handleSubmit}> 
-        <label>
-          Description:
-          <textarea value={this.state.value} onChange={this.handleChange} />
-        </label>
-      </form>
-
-      <form onSubmit={this.handleSubmit}> 
-        <label>
-          Rating:
-          <input type="text"/>
-        </label>
-      </form>
-      
-      <form onSubmit={this.handleSubmit}> 
-        <label>
-          Digital Copy:
-          <input type="text"/>
-        </label>
-      </form>
-
-      <form onSubmit={this.handleSubmit}> 
-        <label>
-          Physical Copy:
-          <input type="text"/>
-        </label>
-      </form> */}
-      </div>
+      </Fragment>
             {/* Console Selector Drop Down */}
-            <div class="form-group">
+            <Fragment class="form-group">
                 <select class="custom-select">
                     <option selected="">Console Selector</option>
                     <option value="1">Nintendo Switch</option>
@@ -87,11 +70,11 @@ class Home extends Component {
                     <option value="3">Xbox One</option>
                 </select>
 
-                <input type="submit" value="Submit" />
-            </div>
-            </div> 
+                <input type="submit"/>
+            </Fragment>
+      </div>
         )
     }
-}
+  }
 
 export default Home;

@@ -21,7 +21,6 @@ class Nintendoswitch extends Component {
         .then(data => this.setState({nsData: data}))
       }
     
-
     render() {
 
       let nsData = this.state.nsData //declaring nsData to prep for being returned below
