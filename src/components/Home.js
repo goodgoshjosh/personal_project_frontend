@@ -31,36 +31,6 @@ class Home extends Component {
 
         <p>Below will be where you update data via a form and submit through the selector</p>
        
-                                        {/* form below */}
-        <Fragment classname="Form">
-        <form onSubmit={e => this.handleSendForm(e)}>
-        <label>
-          Game Name:
-          <input type="text" onChange={e => this.setState({name: e.target.value})} id='name' placeholder="Game Name"/>        
-          </label><br />
-          <label>
-          Genre:
-          <input type="text" onChange={e => this.setState({genre: e.target.value})} id='genre' placeholder="RPG, Action, etc"/>        
-          </label><br />
-          <label>
-          Description:
-          <input type="text" onChange={e => this.setState({description: e.target.value})} id='description' placeholder="Brief description"/>        
-          </label><br />
-          <label>
-          Rating:
-          <input type="text" onChange={e => this.setState({rating: e.target.value})} id='rating' placeholder="Everyone, Teen, etc"/>        
-          </label><br />
-          <label>
-          Digital Copy:
-          <input type="text" onChange={e => this.setState({digital: e.target.value})} id='digital' placeholder="Yes or No"/>        
-          </label><br />
-          <label>
-          Physical Copy:
-          <input type="text" onChange={e => this.setState({physical: e.target.value})} id='physical' placeholder="Yes or No"/>        
-          </label><br />
-         </form>
-
-      </Fragment>
             {/* Console Selector Drop Down */}
             <Fragment class="form-group">
                 <select class="custom-select">
