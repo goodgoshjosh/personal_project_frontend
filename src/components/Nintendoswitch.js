@@ -8,7 +8,7 @@ class Nintendoswitch extends Component {
     constructor() {
       super();
       this.state = { 
-        nsData: [],
+        nsData: [],  //declaring the state for Nintendo Switch Data which comes as an array via SQL
         name: '',
         genre: '',
         description: '',
@@ -23,26 +23,28 @@ class Nintendoswitch extends Component {
         modaldigital: '',
         modalphysical: '',
         modalid: '' } 
-        //declaring the state for Nintendo Switch Data which comes as an array via SQL
       }
-    // handleFormChange(event) {
+    
+      // handleFormChange(event) {
     //     this.setState({})
     // }
     // handleSendForm(e) {
     //     e.preventDefault(e)
     // }
+
     //POST CODE
     handleSubmit = async e => {
       alert("A game was submitted")
-      e.preventDefault(); //puts in in the omnibar/address bar and refreshes page
+      e.preventDefault(); 
       const formData = JSON.stringify({
         name: this.state.name,
         genre: this.state.genre,
         description: this.state.description,
         rating: this.state.rating,
-        digital: this.state.digital,
-        physical: this.state.physical,
+        digital_copy: this.state.digital,
+        physical_copy: this.state.physical
       });
+
       await fetch(`${apiURL}/nintendo_switches`, {
         method: "POST",
         body: formData,
@@ -61,7 +63,7 @@ class Nintendoswitch extends Component {
     };
 
     //UPDATE CODE
-    handleUpdate = async (id) => {
+    handleUpdate = async id => {
 
       const newData = JSON.stringify({
           name: this.state.modalname,
@@ -192,7 +194,9 @@ class Nintendoswitch extends Component {
       <form onSubmit={e => this.handleUpdate}>
         <label>
           Game Name:
-          <input type="text" onChange={e => this.setState({modalname: e.target.value})} id='name' placeholder="Game Name"/>        
+          <input type="text" onChange={e => this.setState({modalname: e.target.value})} 
+          id='name' 
+          placeholder="Game Name"/>        
           </label><br />
           <label>
           Genre:
