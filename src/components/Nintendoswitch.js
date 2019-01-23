@@ -70,8 +70,8 @@ class Nintendoswitch extends Component {
           genre: this.state.modalgenre,
           description: this.state.modaldescription,
           rating: this.state.modalrating,
-          digital: this.state.modaldigital,
-          physical: this.state.modalphysical
+          digital_copy: this.state.modaldigital,
+          physical_copy: this.state.modalphysical
         });
       
       await fetch(`${apiURL}/nintendo_switches/` + id, {
