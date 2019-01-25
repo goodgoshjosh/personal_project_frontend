@@ -65,26 +65,26 @@ class Nintendoswitch extends Component {
       });
     };
 
-    //UPDATE CODE
-    handleUpdate = async id => {
+  //   //UPDATE CODE
+  //   handleUpdate = async id => {
 
-      const newData = JSON.stringify({
-          name: this.state.modalname,
-          genre: this.state.modalgenre,
-          description: this.state.modaldescription,
-          rating: this.state.modalrating,
-          digital_copy: this.state.modaldigital,
-          physical_copy: this.state.modalphysical
-        });
+  //     const newData = JSON.stringify({
+  //         name: this.state.modalname,
+  //         genre: this.state.modalgenre,
+  //         description: this.state.modaldescription,
+  //         rating: this.state.modalrating,
+  //         digital_copy: this.state.modaldigital,
+  //         physical_copy: this.state.modalphysical
+  //       });
       
-      await fetch(`${apiURL}/nintendo_switches/` + id, {
-        method: 'PUT',
-        body: newData,
-        headers: {
-          "Content-Type": "application/json"
-        }
-      });
-  };
+  //     await fetch(`${apiURL}/nintendo_switches/` + id, {
+  //       method: 'PUT',
+  //       body: newData,
+  //       headers: {
+  //         "Content-Type": "application/json"
+  //       }
+  //     });
+  // };
 
       componentDidMount() {
         //below is the fetch that pulls from the apiURL via NOW
@@ -97,7 +97,7 @@ class Nintendoswitch extends Component {
         .then(data => this.setState({nsData: data}))
       }
       handleEditForm(event) {
-        history.push("/puttest", {fromNs: {editFormId: event}})
+        history.push(`/update/${event}`, {nsID: {editFormId: event}})
         history.go(0)
       }
 
@@ -163,7 +163,9 @@ class Nintendoswitch extends Component {
       <tbody>
         {/* //this code below then maps the data based off the unique ID which is a primary key from the database,
         and it is then mapped via item.name, .genre, etc to correspond with the table header above  */}
-      {nsData.map(item => <Fragment key={item.id}>
+      {nsData.map(item =>{ console.log(item.id)
+
+        return (<Fragment key={item.id}>
 
          <tr class="table-success">
           
@@ -181,85 +183,15 @@ class Nintendoswitch extends Component {
             <td><button onClick={() => this.handleEditForm(item.id)}>Edit</button></td>
 
           </tr>
-          
-            {/* <td><div class="accordion" id="accordionExample">
-      <div class="card">
-    <div class="card-header" id="headingOne">
-      <h2 class="mb-0">
-        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          Click here to edit
-        </button>
-      </h2>
-    </div> */}
 
-    {/* <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-      <div class="card-body"></div>
-      <div>
-      <form onSubmit={() => this.handleUpdate(item.id)}>
-        <label>
-          Game Name:
-          <input type="text" onChange={e => this.setState({ modalname: e.target.value })} 
-          id='name' 
-          placeholder="Game Name"/>        
-          </label><br />
-          <label>
-          Genre:
-          <input type="text" onChange={e => this.setState({modalgenre: e.target.value})} 
-          id='genre' 
-          placeholder="RPG, Action, etc"/>        
-          </label><br />
-          <label>
-          Description:
-          <input type="text" onChange={e => this.setState({modaldescription: e.target.value})} 
-          id='description' 
-          placeholder="Brief description"/>        
-          </label><br />
-          <label>
-          Rating:
-          <input type="text" onChange={e => this.setState({modalrating: e.target.value})} 
-          id='rating' 
-          placeholder="Everyone, Teen, etc"/>        
-          </label><br />
-          <label>
-          Digital Copy:
-          <input type="text" onChange={e => this.setState({modaldigital: e.target.value})} 
-          id='digital' 
-          placeholder="Yes or No"/>        
-          </label><br />
-          <label>
-          Physical Copy:
-          <input type="text" onChange={e => this.setState({modalphysical: e.target.value})} 
-          id='physical' 
-          placeholder="Yes or No"/>        
-          </label><br /> <label>
-          ID:
-          <input type="text" onChange={e => this.setState({modalid: e.target.value})} 
-          id='ID #' 
-          />        
-          </label><br />
-        <button type="submit" className="btn btn-primary">
-         Edit
-         </button>
-         </form>
-      
-         </div> */}
-      {/* </div>
-      </div> */}
-      {/* </div> */}
-
-        </Fragment> //Fragments don't take up as much dedicated space as a div. This is a parent element that doesn't take up space
+      </Fragment>)} //Fragments don't take up as much dedicated space as a div. This is a parent element that doesn't take up space
       )}
       
       </tbody>
     </table> 
   </div>
-  
-
-
-
        )
     }
   }
-
 
 export default Nintendoswitch;

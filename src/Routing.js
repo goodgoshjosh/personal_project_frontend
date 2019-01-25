@@ -15,7 +15,7 @@ const Routing = () => (
         <Route exact path="/nintendoswitch" component={Nintendoswitch} />
         <Route exact path="/ps4" component={Ps4} />
         <Route exact path="/xboxone" component={Xboxone} />
-        <Route exact path="/puttest" component={puttest} />
+        <Route path="/update/:id" component={puttest} />
         </Switch>
   </Router>
 );

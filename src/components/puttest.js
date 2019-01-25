@@ -23,9 +23,8 @@ class puttest extends Component {
         modaldigital: '',
         modalphysical: '',
         modalid: '',
-        fromNS: this.props.location.state.fromNs.editFormId}
+        fromNS: this.props.match.params.id}
       }
-    
       // handleFormChange(event) {
     //     this.setState({})
     // }
@@ -64,6 +63,7 @@ class puttest extends Component {
     // };
 
     //PUT (update) CODE
+   
     handleUpdate = async id => {
 
       const newData = JSON.stringify({
@@ -74,7 +74,7 @@ class puttest extends Component {
           digital_copy: this.state.modaldigital,
           physical_copy: this.state.modalphysical
         });
-      
+    
       await fetch(`${apiURL}/nintendo_switches/` + id, {
         method: 'PUT',
         body: newData,
@@ -104,13 +104,13 @@ class puttest extends Component {
       }
     
     render() {
-
+        
       let nsData = this.state.nsData //declaring nsData to prep for being returned below
 
         return (
     
       <div>
-      <form onSubmit={() => this.handleUpdate(this.state.id)}>
+      <form onSubmit={() => this.handleUpdate(this.state.fromNS)}>
         <label>
           Game Name:
           <input type="text" onChange={e => this.setState({ modalname: e.target.value })} 
@@ -139,7 +139,7 @@ class puttest extends Component {
           Digital Copy:
           <input type="text" onChange={e => this.setState({modaldigital: e.target.value})} 
           id='digital' 
-          value = {this.state.modaldigtal}/>        
+          value = {this.state.modaldigital}/>        
           </label><br />
           <label>
           Physical Copy:
@@ -151,13 +151,9 @@ class puttest extends Component {
          Edit
          </button>
          </form>
-      
          </div>
-     
-
       )
     }
 }
-        
       
 export default puttest;
