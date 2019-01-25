@@ -1,6 +1,9 @@
 import React, { Component, Fragment } from "react";
 import './Nintendoswitch.css';
 import { apiURL } from '../App'
+import createHistory from 'history/createBrowserHistory'
+
+const history = createHistory()
 
 // fetch code for using later `${apiURL}/nintendo_switches` remember to not use trailing slashes
 
@@ -34,7 +37,7 @@ class Nintendoswitch extends Component {
 
     //POST CODE
     handleSubmit = async e => {
-      alert("A game was submitted")
+      alert("A game was submitted. Please refresh")
       e.preventDefault(); 
       const formData = JSON.stringify({
         name: this.state.name,
@@ -56,10 +59,10 @@ class Nintendoswitch extends Component {
     
     //DELETE CODE
     handleDeleteItem = async id => {
+      alert("This game was deleted. Please refresh")
       await fetch(`${apiURL}/nintendo_switches/` + id, {
         method: "DELETE"
       });
-      // await this.componentDidMount();
     };
 
     //UPDATE CODE
@@ -93,7 +96,11 @@ class Nintendoswitch extends Component {
         .then(response => response.json() ) //When the app fetches the data, it then sets that data below via setState
         .then(data => this.setState({nsData: data}))
       }
-    
+      handleEditForm(event) {
+        history.push("/puttest", {fromNs: {editFormId: event}})
+        history.go(0)
+      }
+
     render() {
 
       let nsData = this.state.nsData //declaring nsData to prep for being returned below
@@ -104,7 +111,9 @@ class Nintendoswitch extends Component {
           <h1>Nintendo Switch Game Collection</h1>
           <img className="switchlogo" src="https://seeklogo.com/images/N/nintendo-switch-logo-38D4F5C7E7-seeklogo.com.png" alt='Nintendo Switch Logo'></img>
 
-          <Fragment className="Form">
+        
+        {/* This form will submit new games onto the table */}
+        <Fragment className="Form">
         <form onSubmit={this.handleSubmit}>
         <label>
           Game Name:
@@ -154,8 +163,7 @@ class Nintendoswitch extends Component {
       <tbody>
         {/* //this code below then maps the data based off the unique ID which is a primary key from the database,
         and it is then mapped via item.name, .genre, etc to correspond with the table header above  */}
-      {nsData.map(item => 
-      <Fragment key={item.id}>
+      {nsData.map(item => <Fragment key={item.id}>
 
          <tr class="table-success">
           
@@ -170,68 +178,85 @@ class Nintendoswitch extends Component {
               {" "}
               Delete{" "}
             </button></td>
-          <td><button type="button"  data-toggle="modal" data-target="#exampleModal">
-              Edit
-            </button></td>
-        </tr>
-        </Fragment> //Fragments don't take up as much dedicated space as a div. This is a parent element that doesn't take up space
-      )}
-      </tbody>
-    </table> 
+            <td><button onClick={() => this.handleEditForm(item.id)}>Edit</button></td>
 
-
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Edit all information</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
+          </tr>
+          
+            {/* <td><div class="accordion" id="accordionExample">
+      <div class="card">
+    <div class="card-header" id="headingOne">
+      <h2 class="mb-0">
+        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Click here to edit
         </button>
-      </div>
-      <div class="modal-body">
- 
-      <form onSubmit={e => this.handleUpdate}>
+      </h2>
+    </div> */}
+
+    {/* <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div class="card-body"></div>
+      <div>
+      <form onSubmit={() => this.handleUpdate(item.id)}>
         <label>
           Game Name:
-          <input type="text" onChange={e => this.setState({modalname: e.target.value})} 
+          <input type="text" onChange={e => this.setState({ modalname: e.target.value })} 
           id='name' 
           placeholder="Game Name"/>        
           </label><br />
           <label>
           Genre:
-          <input type="text" onChange={e => this.setState({modalgenre: e.target.value})} id='genre' placeholder="RPG, Action, etc"/>        
+          <input type="text" onChange={e => this.setState({modalgenre: e.target.value})} 
+          id='genre' 
+          placeholder="RPG, Action, etc"/>        
           </label><br />
           <label>
           Description:
-          <input type="text" onChange={e => this.setState({modaldescription: e.target.value})} id='description' placeholder="Brief description"/>        
+          <input type="text" onChange={e => this.setState({modaldescription: e.target.value})} 
+          id='description' 
+          placeholder="Brief description"/>        
           </label><br />
           <label>
           Rating:
-          <input type="text" onChange={e => this.setState({modalrating: e.target.value})} id='rating' placeholder="Everyone, Teen, etc"/>        
+          <input type="text" onChange={e => this.setState({modalrating: e.target.value})} 
+          id='rating' 
+          placeholder="Everyone, Teen, etc"/>        
           </label><br />
           <label>
           Digital Copy:
-          <input type="text" onChange={e => this.setState({modaldigital: e.target.value})} id='digital' placeholder="Yes or No"/>        
+          <input type="text" onChange={e => this.setState({modaldigital: e.target.value})} 
+          id='digital' 
+          placeholder="Yes or No"/>        
           </label><br />
           <label>
           Physical Copy:
-          <input type="text" onChange={e => this.setState({modalphysical: e.target.value})} id='physical' placeholder="Yes or No"/>        
+          <input type="text" onChange={e => this.setState({modalphysical: e.target.value})} 
+          id='physical' 
+          placeholder="Yes or No"/>        
+          </label><br /> <label>
+          ID:
+          <input type="text" onChange={e => this.setState({modalid: e.target.value})} 
+          id='ID #' 
+          />        
           </label><br />
-          <button type="submit" className="btn btn-primary">
-         Submit
+        <button type="submit" className="btn btn-primary">
+         Edit
          </button>
          </form>
-         </div>
-      <div class="modal-footer">
-      </div>
-    </div>
+      
+         </div> */}
+      {/* </div>
+      </div> */}
+      {/* </div> */}
+
+        </Fragment> //Fragments don't take up as much dedicated space as a div. This is a parent element that doesn't take up space
+      )}
+      
+      </tbody>
+    </table> 
   </div>
-</div>
+  
 
 
 
-    </div>
        )
     }
   }
